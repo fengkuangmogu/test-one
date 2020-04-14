@@ -1,0 +1,13 @@
+.tree-nav.clearfix
+  ul.layui-nav.layui-nav-tree
+    if(session.role && session.role > 600)
+      li(class=(pageNum == 4)?"layui-nav-item layui-nav-itemed layui-this":"layui-nav-item layui-nav-itemed")
+        a(href="/admin/user") 用户管理
+    li(class=(pageNum == 2)?"layui-nav-item layui-nav-itemed layui-this":"layui-nav-item layui-nav-itemed")
+      a(href="/admin/index") 后台首页
+    li(class=(pageNum == 0)?"layui-nav-item layui-nav-itemed layui-this":"layui-nav-item layui-nav-itemed")
+      a(href="/admin/article") 文章管理
+    li(class=(pageNum == 1)?"layui-nav-item layui-nav-itemed layui-this":"layui-nav-item layui-nav-itemed")
+      a(href="/admin/comment") 评论管理
+    li(class=(pageNum == 3)?"layui-nav-item layui-nav-itemed layui-this":"layui-nav-item layui-nav-itemed")
+      a(href="/admin/info") 个人中心

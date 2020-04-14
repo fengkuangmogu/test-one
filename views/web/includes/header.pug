@@ -1,0 +1,37 @@
+.fly-header.layui-bg-black
+  .layui-container  
+    .layui-row
+      .layui-col-md9
+        ul.layui-nav
+          a.fly-logo
+            img(src='/web/image/logo.png')
+          li(class=(pageName === 'index')?"layui-nav-item layui-this":"layui-nav-item")
+            a(href="/") 首页
+              i.iconfont.icon-jiaoliu  
+          li.layui-nav-item
+            a tab1
+              i(class='iconfont icon-chanpin', style='top: 1px;')     
+          li.layui-nav-item
+            a tab2
+              i.iconfont.icon-ui 
+      if session && !session.isNew
+        .layui-col-md3
+          ul.layui-nav
+            li.layui-nav-item
+              a(href="javascript:;")
+                img(src=session.avatar, class="layui-nav-img", alt="头像")
+                = session.username
+              dl.layui-nav-child
+                dd
+                  a(href="/admin/index") 个人中心
+                dd
+                  a(href="/user/logout") 退了    
+      else
+        .layui-col-md3
+          ul.layui-nav
+            li(class=(pageName==="login")?"layui-nav-item layui-this":"layui-nav-item", id="login")
+              a(href="/user/login") 登入
+            li(class=(pageName==="reg")?"layui-nav-item layui-this":"layui-nav-item", id="regist")
+              a(href="/user/reg") 注册
+     
+    

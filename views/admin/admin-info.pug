@@ -1,0 +1,27 @@
+extends ./layout/layout.pug
+
+block main
+  .layui-row
+    //- .info.layui-col-md6
+      //- .layui-form
+      //-   .layui-form-item
+      //-     label.layui-form-label 用户名
+      //-     .layui-input-inline
+      //-       input(type="text", name="username", lay-verify="required", class="layui-input", value=session.username)
+      //-   .layui-form-item
+      //-     .layui-input-block
+      //-       button(class="layui-btn" lay-filter="updateUser") 更新
+      //-       button(class="layui-btn layui-btn-primary") 取消
+
+
+    .photo(style="margin-left: 15px")
+      img(src=session.avatar,id="avatarPreview", width="100", height="100", style="display:block;")
+      button(type="button", class="layui-btn", id="avatarUpload" style="margin-top: 20px;") 头像上传
+        i(class="layui-icon") &#xe67c;
+
+      
+        
+
+block scri
+  script(src="/admin/js/admin-info.js") 
+  

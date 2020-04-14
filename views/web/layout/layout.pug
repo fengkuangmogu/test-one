@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta(charset='utf8')
+    title=title
+    
+    link(rel="stylesheet", href='/layui/css/layui.css')
+    script(src="/layui/layui.js")
+
+  block css
+    
+  body
+    //- 这里是页头
+    include ../includes/header.pug
+    //- 这里是导航
+    block nav
+    //- include ../includes/nav.pug
+    //- 这里是内容
+    block contents
+    //- 这里是页脚
+    //- include ../includes/foot.pug
+
+    block scripts
+

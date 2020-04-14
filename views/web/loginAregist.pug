@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    meta(charset='utf8')
+    title=title   
+    link(rel="stylesheet", href='/layui/css/layui.css')
+    script(src="/layui/layui.js")
+    script(src="/web/js/login.js")
+  body
+    include includes/header.pug
+
+    .layui-container
+      .layui-row
+        .layui-col-md6
+          .layui-tab
+            ul.layui-tab-title
+              li(class=show?"layui-this":"") 
+                a(href="/user/login") 登陆
+              li(class=show?"":"layui-this") 
+                a(href="/user/reg") 注册
+            .layui-tab-content
+              div(class=show?"layui-tab-item layui-show":"layui-tab-item")
+                form(class="layui-form", method="post", action="/user/login")
+                  .layui-form-item
+                    label.layui-form-label 用户名
+                    .layui-input-block
+                      input(type="text", name="username", required, lay-verify="required", placeholder="请输入用户名", autocomplete="off", class="layui-input")
+                  .layui-form-item
+                    label.layui-form-label 密码
+                    .layui-input-inline
+                      input(type="password", name="password", required, lay-verify="required", placeholder="请输入密码", autocomplete="off", class="layui-input")
+                  .layui-fomr-item
+                    .layui-input-block 
+                      button(class="layui-btn" lay-submit, lay-filter="login") 登录
+                      button(class="layui-btn layui-btn-primary", type="reset") 取消
+              div(class=show?"layui-tab-item":"layui-tab-item layui-show")
+                form(class="layui-form", method="post", action="/user/reg")
+                  .layui-form-item
+                    label.layui-form-label 用户名
+                    .layui-input-block
+                      input(type="text", name="username", required, lay-verify="required", placeholder="请输入用户名", autocomplete="off", class="layui-input")
+                  .layui-form-item
+                    label.layui-form-label 密码
+                    .layui-input-inline
+                      input(type="password", name="password", required, lay-verify="required", placeholder="请输入密码", autocomplete="off", class="layui-input")
+                  .layui-form-item
+                    label.layui-form-label 确认密码
+                    .layui-input-inline
+                      input(type="password", name="repassword", required, lay-verify="required", placeholder="请再次输入密码", autocomplete="off", class="layui-input")
+                  .layui-fomr-item
+                    .layui-input-block 
+                      button(class="layui-btn layui-btn-normal", lay-submit, lay-filter="reg") 注册
+                      button(class="layui-btn layui-btn-primary", type="reset") 取消

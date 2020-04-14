@@ -1,0 +1,24 @@
+extends layout/layout.pug
+
+block scripts
+  script(src="/web/js/article.js")
+
+block contents
+  .layui-container
+    div(class="layui-form")
+      .layui-row
+        .layui-col-md6
+          .layui-form-item
+            label.layui-form-label 标题
+            .layui-input-block
+              input(name="title", type="text", required, placeholder="请输入标题", class="layui-input")
+        .layui-col-md6
+          .layui-form-item
+            label.layui-form-label 分类
+            .layui-input-block
+              select(name="tips", lay-verify="required")
+                option(value="0") vue
+                option(value="1") js
+                option(value="2") react
+      textarea(id="demo" style="display: none;")
+      button(class="layui-btn", lay-submit, lay-filter="addArticle") 发表

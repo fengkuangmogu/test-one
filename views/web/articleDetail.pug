@@ -1,0 +1,55 @@
+extends layout/layout.pug
+
+block css
+  link(rel="stylesheet", href="/web/css/style.css")
+  
+
+block contents
+  .layui-container 
+    .article
+      .article-title
+        h2(data-id=article._id)=article.title
+      .article-subTitle
+        span 2010-01-09
+        a(href="")
+          span=article.author.username
+      .article-content!=article.content
+    
+    .comments
+      fieldset(class="layui-elem-field layui-field-title", style="text-align: center;")
+        legend 回帖
+      .comment-box
+        ul.comment-list
+          if(commentList != undefined)
+            each comment in commentList
+              li(data-id=comment._id)
+                div(class="comment-user")
+                  a(href="")
+                    img(src=comment.user.avatar, class="avatar")
+                  div(class="comment-username")=comment.user.username
+                  div(class="comment-time")=comment.updated.toLocaleString()
+                div(class="comment-body")!=comment.content
+                div(class="comment-reply") 点赞评论
+          //- li
+          //-   div(class="comment-user")
+          //-     a(href="")
+          //-       img(src="/avatar/mm.jpg")
+          //-     div(class="comment-username") 我的名字是www
+          //-     div(class="comment-time") 2010-09-01
+          //-   div(class="comment-body") 这个nice
+          //-   div(class="comment-reply") 点赞评论
+        include includes/laypage.pug
+        .comment-submit 
+          include includes/layedit.pug
+        button(id="comment-submit").layui-btn 提交评论
+      
+      
+  
+    
+          
+
+
+    
+
+block scripts
+  script(src="/web/js/articleDetail.js")

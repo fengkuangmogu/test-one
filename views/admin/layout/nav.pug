@@ -1,0 +1,12 @@
+.layui-row.nav
+  .layui-col-md12
+    .nav-title 
+      h2 后台管理
+    ul.layui-nav
+      li.layui-nav-item
+        a(href="")
+          img(src=session.avatar, class="layui-nav-img")
+          =session.username
+        dl.layui-nav-child
+          dd
+            a(href="/user/logout") 退了

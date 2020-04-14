@@ -1,0 +1,40 @@
+extends layout/layout.pug
+block css
+  link(rel="stylesheet", href='/web/css/style.css')
+
+block nav
+  include includes/nav.pug
+
+block contents
+  .layui-container 
+    ul.test-list
+      if(articleList !== undefined)
+        each article in articleList
+          li 
+            a(href="", class='test-avator')
+              img(src= article.author.avatar, alt="头像")
+            h2 
+              a(href=`/article/${article._id}`)= article.title
+            .article-info
+              a(href)
+                cite= article.author.username
+              span= article.created.toLocaleString()
+              span.test-comment-num
+    include includes/laypage.pug
+      //- li 
+      //-   a(href="", class='test-avator')
+      //-     img(src="/web/image/ym.jpg", alt="")
+      //-   h2 
+      //-     a 这是文章标题
+      //-   .article-info
+      //-     a(href="")
+      //-       cite sidfdofdf
+      //-     span 2010-3-01
+      //-     span.test-comment-num 23
+          
+
+
+    
+
+block scripts
+  script(src="/web/js/index.js")

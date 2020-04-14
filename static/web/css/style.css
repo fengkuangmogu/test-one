@@ -1,0 +1,112 @@
+body{
+    background-color: rgb(242,242,242);
+}
+
+#laypage{
+    text-align: center;
+}
+
+.test-list li{
+    position: relative;
+    height: 45px;
+    background-color: #fff;
+    padding: 15px 15px 15px 70px;
+}
+.test-avator{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+.test-avator img{
+    display: block;
+    width: 45px;
+    height: 45px;
+}
+.test-list li h2{
+    height: 26px;
+}
+
+.article-info, .test-list li h2{
+    font-size: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+.test-list li h2 a{
+    display: inline-block;
+    max-width: 80%;
+    font-size: 16px;
+}
+.article-info{
+    position: relative;
+}
+.article-info>*{
+    padding-right: 15px;
+}
+.article-info a, .article-info span{
+    font-size: 13px;
+    display: inline-block;
+}
+.test-comment-num{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.article, .comments{
+    width: 100%;
+    background: #fff;
+    margin-top: 15px;
+    padding-top: 10px
+}
+.article-title{
+    text-align: center;
+}
+.article-subTitle span{
+    display: inline-block;
+    margin-right: 15px;
+}
+.article-subTitle{
+    text-align: center
+}
+.article-content{
+    padding: 10px 30px 20px 30px;
+}
+.article-title, .article-subTitle{
+    padding: 5px 30px;
+}
+
+.comment-user{
+    position: relative;
+    line-height: 23px;
+}
+img.avatar{
+    width: 45px;
+    height: 45px;
+    display: block;
+}
+.comment-user a{
+    position: absolute;
+}
+.comment-username, .comment-time{
+    padding-left: 60px;
+}
+.comment-body{
+    padding: 15px 0px;
+}
+
+.comment-list>li{
+    padding: 15px 0px;
+    border-bottom: 1px dotted rgb(230,230,230);
+}
+.comment-list>li:last-child{
+    border-bottom: none;
+}
+
+.comment-box{
+    padding: 0px 30px 10px 30px;
+}
+.comment-submit{
+    margin-top: 10px;
+}

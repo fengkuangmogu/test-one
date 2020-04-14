@@ -1,0 +1,75 @@
+body{
+    background: #eee;
+  }
+  .clearfix:after{
+    display: block;
+    content: "";
+    clear: both;
+  }
+  .layui-fluid{
+    background: #fff;
+  }
+  .nav .layui-nav{
+    float: right;
+  }
+  .nav .layui-col-md12{
+    background: #393D49;
+  }
+  .nav .nav-title{
+    width: auto;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    color: #fff;
+    margin-left: 20px;
+  }
+  .content{
+    position: relative;
+  }
+  .content .tree-nav{
+    background: #393D49;
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .content .layui-nav{
+    width: 100%;
+  }
+  .pages{
+    width: calc(100% - 250px);
+    padding-left: 250px;
+    padding-top: 20px;
+    min-height: 225px;
+  }
+  .user-list{
+    text-align: center;
+    height: 300px;
+  }
+  .list,.search{
+    margin: 0px 0px 20px 20px;
+  }
+  .search .inpt{
+    width: 400px;
+    float: left;
+  }
+  .search button{
+    float: left;
+    margin-left: 20px;
+  }
+  
+  .user-list button{
+    height: 30px;
+    line-height: 30px;
+  }
+  .user-list .layui-row{
+    border-bottom: 1px solid #eee;
+  }
+  .user-list li{
+    font-size: 12px;
+  }
+  .user-list .layui-col-md3{
+    height: 45px;
+    line-height: 45px;
+  }

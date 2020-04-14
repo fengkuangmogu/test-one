@@ -1,0 +1,26 @@
+extends ./layout/layout.pug
+
+block main
+  .search.clearfix
+    .inpt
+      input(type="text", class="layui-input layui-input-inline", name="search", placeholder="请输入搜索关键字")
+    button(class="layui-btn") 搜索
+          
+  .list
+    h3 用户列表
+    .user-list.layui-row
+      .layui-col-md3.layui-show-md-inline-block 用户名
+      .layui-col-md3.layui-show-md-inline-block 角色
+      .layui-col-md3.layui-show-md-inline-block 创建时间
+      .layui-col-md3.layui-show-md-inline-block 操作
+    ul.user-list
+      if(userList != undefined)
+        each user in userList
+          li(id=user._id).layui-row
+            .layui-col-md3.layui-show-md-inline-block=user.username
+            .layui-col-md3.layui-show-md-inline-block=user.role
+            .layui-col-md3.layui-show-md-inline-block=user.created.toLocaleString()
+            .layui-col-md3.layui-show-md-inline-block 
+              button(class="layui-btn") 编辑
+              button(class="layui-btn layui-btn-warm") 删除
+    include layout/laypage.pug
