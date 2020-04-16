@@ -10,7 +10,11 @@ const userSchema = new Schema({
     role: {
         type: Number,
         default: 1, // 普通用户 没有用户管理
-    }
+    },
+    commentNum: {
+        type: Number,
+        default: 0,
+    },
 },{
     versionKey: false,
     timestamps: {

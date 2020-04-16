@@ -1,12 +1,10 @@
-const { db } = require('../schema/connect');
-const userSchema = require('../schema/user');
 const { sha } = require('../util/encrypt')
 const fs = require('fs');
 const { join } = require('path')
 
 
 // 通过db创建一个操作数据库的模型对象
-const userModel = db.model("users", userSchema);
+const User = require('../model/user');
 
 // 用户注册
 module.exports.reg = async function(ctx){
@@ -17,14 +15,14 @@ module.exports.reg = async function(ctx){
 
     // 去数据库查询是否存在此username
     await new Promise(function(resolve,reject){
-        userModel.find({username}, function(err, data){
+        User.find({username}, function(err, data){
             if(err) return reject(err);
             if(data.length !== 0){
                 // 数据库存在此username
                 return resolve("");
             }else{
                 // 数据库不存在此username
-                let userNew = new userModel({
+                let userNew = new User({
                     username,
                     password: sha(password),
                 })
@@ -68,7 +66,7 @@ module.exports.login = async function(ctx){
     let encryPasswrd = sha(password);
 
     await new Promise(function(resolve, reject){
-        userModel.find({username}, function(err, data){
+        User.find({username}, function(err, data){
             if(err) return reject(err);
 
             if(data.length === 0){
@@ -217,13 +215,13 @@ module.exports.updateAvatar = async function(ctx){
 
     reader.pipe(upstream);
 
-    let user = new userModel({
+    let user = new User({
         _id: ctx.session.uid,
         avatar: "/upload" + fullName
     })
 
     // 数据库里存上传的图片
-    userModel
+    User
     .updateOne({_id: ctx.session.uid}, {avatar: "/upload/" + fullName}, function(err, data){
         if(err) {
             resp.status = "0";

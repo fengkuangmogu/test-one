@@ -1,7 +1,4 @@
-const commentSchema = require('../schema/comment');
-const { db } = require('../schema/connect');
-
-const commentModel = db.model("comments", commentSchema);
+const Comment = require('../model/comment');
 
 exports.addComment = async function(ctx){
     let reqData = ctx.request.body;
@@ -17,7 +14,7 @@ exports.addComment = async function(ctx){
     reqData.ups = 0;
     
     await new Promise(function(reject, resolve){
-        new commentModel(reqData).save(function(data, err){
+        new Comment(reqData).save(function(data, err){
             if(err) return reject(err);
 
             resolve(data);

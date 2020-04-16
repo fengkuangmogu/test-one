@@ -1,9 +1,5 @@
-const articleSchema = require('../schema/article')
-const commentSchema = require('../schema/comment')
-const { db } = require('../schema/connect')
-
-const articleModel = db.model('articles', articleSchema);
-const commentModel = db.model('comments', commentSchema);
+const Article = require('../model/article');
+const Comment = require('../model/comment');
 
 module.exports.addPage = async function(ctx){
     await ctx.render('web/addArticle', {
@@ -12,6 +8,7 @@ module.exports.addPage = async function(ctx){
     });
 }
 
+// 新增文章
 module.exports.add = async function(ctx){
     let reqData = ctx.request.body;
 
@@ -25,7 +22,7 @@ module.exports.add = async function(ctx){
     reqData.author = ctx.session.uid;
 
     await new Promise(function(reject, resolve){
-        new articleModel(reqData).save(function(data, err){
+        new Article(reqData).save(function(data, err){
             if(err) return reject(err);
 
             resolve(data);
@@ -55,7 +52,7 @@ module.exports.getListByPage = async function(ctx){
     page--;
 
     // get article counts
-    const maxNum = await articleModel.estimatedDocumentCount().then(function(data){
+    const maxNum = await Article.estimatedDocumentCount().then(function(data){
         return data;
     })
     .catch(function(err){
@@ -63,7 +60,7 @@ module.exports.getListByPage = async function(ctx){
     })
 
     // get article list refer to page number
-    const articleList = await articleModel
+    const articleList = await Article
         .find()
         .sort('-created')
         .skip(limitNum * page)
@@ -95,7 +92,7 @@ module.exports.getArticleById = async function(ctx){
     let limitNum = 5;
 
     // get article detail refer to id
-    const article = await articleModel
+    const article = await Article
     .findOne({_id: id})
     .populate({
         path: 'author',
@@ -109,7 +106,7 @@ module.exports.getArticleById = async function(ctx){
     })
     
     // get count of comments
-    const maxNum = await commentModel
+    const maxNum = await Comment
     .countDocuments({commentTo: id})
     .then(function(data){
         return data;
@@ -119,7 +116,7 @@ module.exports.getArticleById = async function(ctx){
     })
 
     // get  comments refer to article id
-    const commentList = await commentModel
+    const commentList = await Comment
     .find({commentTo: id})
     .populate({
         path: 'commentTo',
@@ -156,7 +153,7 @@ module.exports.getArticleByIdAndPage = async function(ctx){
     let limitNum = 5;
 
      // get article detail refer to id
-     const article = await articleModel
+     const article = await Article
      .findOne({_id: id})
      .populate({
          path: 'author',
@@ -170,7 +167,7 @@ module.exports.getArticleByIdAndPage = async function(ctx){
      })
      
      // get count of comments
-     const maxNum = await commentModel
+     const maxNum = await Comment
      .countDocuments({commentTo: id})
      .then(function(data){
          return data;
@@ -180,7 +177,7 @@ module.exports.getArticleByIdAndPage = async function(ctx){
      })
 
     // get  comments refer to article id
-    const commentList = await commentModel
+    const commentList = await Comment
     .find({commentTo: id})
     .populate({
         path: 'commentTo',

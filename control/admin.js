@@ -1,6 +1,6 @@
-const userSchema = require('../schema/user');
-const articleSchema = require('../schema/article');
-const commentSchema = require('../schema/comment');
+const User = require('../model/user');
+const Article = require('../model/article');
+const Comment = require('../model/comment');
 const fs = require('fs');
 const { join } = require('path');
 
@@ -30,4 +30,8 @@ module.exports.addPage = async function(ctx){
             pageNum,
         })
     }
+}
+
+module.exports.commentList = async function(ctx){
+    
 }

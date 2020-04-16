@@ -7,20 +7,12 @@ block main
     button(class="layui-btn") 搜索
           
   .list
-    h3 评论列表
-    .user-list.layui-row
-      .layui-col-md3.layui-show-md-inline-block 文章名称
-      .layui-col-md3.layui-show-md-inline-block 评论内容
-      .layui-col-md3.layui-show-md-inline-block 创建时间
-      .layui-col-md3.layui-show-md-inline-block 操作
-    ul.user-list
-      if(commentList != undefined)
-        each comment in commentList
-          li(id=comment._id).layui-row
-            .layui-col-md3.layui-show-md-inline-block=comment.article.title
-            .layui-col-md3.layui-show-md-inline-block=comment.content
-            .layui-col-md3.layui-show-md-inline-block=comment.created.toLocaleString()
-            .layui-col-md3.layui-show-md-inline-block 
+    table(class="layui-table", lay-data="{id='commentList, url='/admin/commentList', page:true, height=400}")
+      thead
+        tr
+          th(lay-data="{width: 80, field: 'commentTo'}") 所评文章
+          th(lay-data="{width: 100, field: 'content'}") 评论内容
+          th(lay-data="{width: 100, field: 'opt'}") 操作
               button(class="layui-btn") 编辑
               button(class="layui-btn layui-btn-warm") 删除
     include layout/laypage.pug

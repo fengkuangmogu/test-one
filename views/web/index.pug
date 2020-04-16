@@ -19,7 +19,7 @@ block contents
               a(href)
                 cite= article.author.username
               span= article.created.toLocaleString()
-              span.test-comment-num
+              span.test-comment-num=article.commentNum
     include includes/laypage.pug
       //- li 
       //-   a(href="", class='test-avator')

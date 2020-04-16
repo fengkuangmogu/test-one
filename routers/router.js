@@ -44,7 +44,11 @@ router.post('/comment/add', user.keepLogin, comment.addComment);
 
 router.get('/admin/:pageName', user.keepLogin, admin.addPage);
 
-router.post('/upload', user.keepLogin, user.updateAvatar)
+router.post('/upload', user.keepLogin, user.updateAvatar);
+
+router.get('/admin/commentList', user.keepLogin, admin.commentList)
+
+
 
 
 
