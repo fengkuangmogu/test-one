@@ -1,5 +1,8 @@
 extends ./layout/layout.pug
 
+block scri 
+  script(src="/admin/js/admin-comment.js")  
+
 block main
   .search.clearfix
     .inpt
@@ -7,12 +10,22 @@ block main
     button(class="layui-btn") 搜索
           
   .list
-    table(class="layui-table", lay-data="{id='commentList, url='/admin/commentList', page:true, height=400}")
+    table(class="layui-table", lay-data="{height:315, url:'/admin/commentList/', page:true, id:'commentList', limit:5}", lay-filter="coList")
       thead
         tr
-          th(lay-data="{width: 80, field: 'commentTo'}") 所评文章
-          th(lay-data="{width: 100, field: 'content'}") 评论内容
-          th(lay-data="{width: 100, field: 'opt'}") 操作
-              button(class="layui-btn") 编辑
-              button(class="layui-btn layui-btn-warm") 删除
-    include layout/laypage.pug
+          th(lay-data="{align: 'center', width: 250, field: 'commentTo', templet: function(d){ return d.commentTo.title}}") 所评文章
+          th(lay-data="{align: 'center', width: 250, field: 'content'}") 评论内容
+          th(lay-data="{align: 'center', width: 250, field: 'created', templet: function(d){return new Date(d.created).toLocaleString();}}") 评论内容
+          th(lay-data="{align: 'center', field: 'opt', toolbar: '#opt'}") 操作
+
+  
+    script(type="text/html", id="opt")
+      a(class="layui-btn layui-btn-primary layui-btn-xs", lay-event="detail") 查看
+      a(class="layui-btn layui-btn-xs", lay-event="edit") 编辑
+      a(class="layui-btn layui-btn-danger layui-btn-xs", lay-event="delete") 删除
+
+block template
+  .box(style="width: 500px; margin: 0 auto;")
+    .content
+      label 评论内容
+      textarea(id="commentContent" style="display: none;" ) 

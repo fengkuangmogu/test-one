@@ -32,6 +32,74 @@ module.exports.addPage = async function(ctx){
     }
 }
 
+// get comment list
 module.exports.commentList = async function(ctx){
-    
+    // 获得当前用户所有的评论 每次5条
+    let uid = ctx.session.uid;
+    let page = ctx.request.page;
+    page--;
+    let limit = ctx.request.limit;
+
+    const data = await Comment.find({user: uid})
+    .sort('-created')
+    .skip(limit * page)
+    .limit(limit)
+    .populate({
+        path: 'commentTo',
+        select: 'title'
+    })
+    .then(function(data){
+        return data;
+    })
+    .catch(function(err){
+        console.log(err)
+    })
+
+    ctx.body = {
+        data,
+        count: data.length,
+        code: 0,
+    }
+}
+
+// delete comment
+module.exports.removeComment = async function(ctx){
+    let res = {
+        status: 1,
+        msg: "删除成功"
+    }
+    let comId = ctx.request.body.commentId;
+    Comment.findById(comId)
+    .then(function(data) {
+        data.remove();
+    })
+    .catch(function(err){
+        console.log(err)
+        res.status = 0;
+        res.msg = err
+    })
+
+    ctx.body = res;
+}
+
+//update comment
+module.exports.updateComment = async function(ctx){
+    let comId = ctx.request.body.commentId;
+    let content = ctx.request.body.content;
+    let res = {
+        status: 1,
+        msg: "更新成功"
+    }
+
+    Comment.updateOne({_id: comId},{$set: {content: content}})
+    .then(function(data){
+        console.log(data)
+    })
+    .catch(function(err){
+        console.log(err);
+        res.status = 0;
+        res.msg = err;
+    })
+
+    ctx.body = res;
 }

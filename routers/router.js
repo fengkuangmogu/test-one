@@ -42,11 +42,17 @@ router.get('/article/:id/page/:page', article.getArticleByIdAndPage);
 
 router.post('/comment/add', user.keepLogin, comment.addComment);
 
+router.get('/admin/commentList', user.keepLogin, admin.commentList)
+
 router.get('/admin/:pageName', user.keepLogin, admin.addPage);
+
+router.post('/admin/removeComment', user.keepLogin, admin.removeComment);
+
+router.post('/admin/updateComment', user.keepLogin, admin.updateComment);
 
 router.post('/upload', user.keepLogin, user.updateAvatar);
 
-router.get('/admin/commentList', user.keepLogin, admin.commentList)
+
 
 
 
